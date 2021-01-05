@@ -1,5 +1,11 @@
 {
-    "name": "ruslan/albion-status-client",
+    "name": "ica4c/albion-status-client",
+    "description": "Simple albion service status client",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "albion online", "api", "games", "mmo"
+    ],
     "authors": [
         {
             "name": "Ruslan Gataullin",
