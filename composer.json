@@ -1,0 +1,31 @@
+{
+    "name": "ruslan/albion-status-client",
+    "authors": [
+        {
+            "name": "Ruslan Gataullin",
+            "email": "ruslan@solid.studio"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Albion\\Status\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "solid/foundation": "^0.1.0",
+        "guzzlehttp/guzzle": "~6.0",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-master",
+        "phpunit/phpunit": "^9"
+    },
+    "scripts": {
+        "test": "php vendor/bin/phpunit --bootstrap vendor/autoload.php --configuration phpunit.xml tests"
+    }
+}
