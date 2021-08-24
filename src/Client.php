@@ -33,7 +33,12 @@ class Client
     {
         return (new ResponseStateDTODecorator)
             ->decorate(
-                $this->client->get('http://serverstatus.albiononline.com/')
+                $this->client->get(
+                    'http://serverstatus.albiononline.com/',
+                    [
+                        'http_errors' => false
+                    ]
+                )
             );
     }
 
@@ -45,7 +50,7 @@ class Client
     {
         return (new ResponseStateDTODecorator)
             ->decorate(
-                $this->client->get('http://live.albiononline.com/status.txt')
+                $this->client->get('http://live.albiononline.com/status.txt', ['http_errors' => false])
             );
     }
 }
