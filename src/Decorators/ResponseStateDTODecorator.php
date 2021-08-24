@@ -35,9 +35,6 @@ class ResponseStateDTODecorator
                 case 'online':
                     return new ServiceStateDTO(State::of(State::ONLINE), $content['message']);
 
-                case 'offline':
-                    return new ServiceStateDTO(State::of(State::OFFLINE), $content['message']);
-
                 case 'starting':
                     return new ServiceStateDTO(State::of(State::STARTING), $content['message']);
 
