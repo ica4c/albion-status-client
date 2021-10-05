@@ -64,4 +64,12 @@ class Version
         $this->ios = $ios;
         return $this;
     }
+
+    public function isSame(Version $version): bool {
+        return $this->getOSX() === $version->getOSX() &&
+            $this->getLinux() === $version->getLinux() &&
+            $this->getWindows() === $version->getWindows() &&
+            $this->getIOS() === $version->getIOS() &&
+            $this->getAndroid() === $version->getAndroid();
+    }
 }
