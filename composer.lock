@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fa7065dd8a3339b7449f7777d4554c57",
+    "content-hash": "fc07bf73143073b02da2bf56687c15b4",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -206,6 +206,64 @@
                 "source": "https://github.com/guzzle/psr7/tree/1.7.0"
             },
             "time": "2020-09-30T07:37:11+00:00"
+        },
+        {
+            "name": "lukasoppermann/http-status",
+            "version": "3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lukasoppermann/http-status.git",
+                "reference": "116dc83cedb6b8f2b38d4ee9bff38eb53f14d059"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lukasoppermann/http-status/zipball/116dc83cedb6b8f2b38d4ee9bff38eb53f14d059",
+                "reference": "116dc83cedb6b8f2b38d4ee9bff38eb53f14d059",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.16",
+                "league/csv": "^7.1",
+                "php-coveralls/php-coveralls": "^2.4",
+                "phpunit/phpunit": "~9.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Lukasoppermann\\Httpstatus\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lukas Oppermann",
+                    "email": "lukas@vea.re",
+                    "homepage": "http://vea.re",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A minimal package for working with HTTP statuses.",
+            "homepage": "https://github.com/lukasoppermann/http-status",
+            "keywords": [
+                "httpstatus",
+                "status codes"
+            ],
+            "support": {
+                "issues": "https://github.com/lukasoppermann/http-status/issues",
+                "source": "https://github.com/lukasoppermann/http-status/tree/3.1.0"
+            },
+            "time": "2020-11-07T13:29:43+00:00"
         },
         {
             "name": "psr/http-message",
