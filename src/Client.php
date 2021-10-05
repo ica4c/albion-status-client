@@ -45,14 +45,17 @@ class Client
 
     /**
      * Get secondary service status state
-     * @return \Albion\Status\DTOs\ServiceStateDTO
+     * @return string
      */
-    public function getMaintenanceStatus(): ServiceStateDTO
+    public function getMaintenanceStatus(): ?string
     {
-        return (new ResponseStateDTODecorator())
-            ->decorate(
-                $this->client->get('http://live.albiononline.com/status.txt', ['http_errors' => false])
-            );
+        $response = $this->client->get('http://live.albiononline.com/status.txt', ['http_errors' => false]);
+
+        if($response->getStatusCode() === Httpstatuscodes::HTTP_OK) {
+            return $response->getBody()->getContents();
+        }
+
+        return null;
     }
 
     public function getClientVersion(): ?Version
