@@ -8,6 +8,8 @@ Simple http client to get service status and maintenance reports
 
 ### Usage
 
+#### How to resolve server status
+
 ```php
 use Albion\Status\Client;
 use Albion\Status\Models\State;
@@ -30,4 +32,22 @@ switch ($status->getState()->toString()) {
         echo $maintenance->getMessage(); 
         break;
 }
+```
+
+#### How to resolve active client version
+
+```php
+use Albion\Status\Client;
+use Albion\Status\Models\Version;
+
+$client = new Client();
+
+$version = $client->getClientVersion();
+
+echo "Android is: {$version->getAndroid()}\n";
+echo "IOS is: {$version->getIOS()}\n";
+echo "Windows is: {$version->getWindows()}\n";
+echo "OSX is: {$version->getOSX()}\n";
+echo "Linux is: {$version->getLinux()}\n";
+
 ```
