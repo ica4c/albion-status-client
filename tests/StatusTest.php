@@ -44,8 +44,8 @@ class StatusTest extends TestCase
     public function realmDataProvider(): array
     {
         return [
-            RealmStatusHost::WEST,
-            RealmStatusHost::EAST
+            [RealmStatusHost::WEST],
+            [RealmStatusHost::EAST]
         ];
     }
 }
