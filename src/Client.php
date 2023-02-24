@@ -4,6 +4,7 @@ namespace Albion\Status;
 
 use Albion\Status\Decorators\ResponseStateDTODecorator;
 use Albion\Status\DTOs\ServiceStateDTO;
+use Albion\Status\Enums\RealmStatusHost;
 use Albion\Status\Models\Version;
 use GuzzleHttp\Client as HttpClient;
 use Lukasoppermann\Httpstatus\Httpstatuscodes;
@@ -21,21 +22,22 @@ class Client
     {
         $this->client = new HttpClient(
             [
-                'timeout' => 90,
+                'timeout' => 40,
             ]
         );
     }
 
     /**
-     * Get primary service status state
+     * @description Get primary service status state
+     * @param RealmStatusHost $host
      * @return \Albion\Status\DTOs\ServiceStateDTO
      */
-    public function getServiceStatus(): ServiceStateDTO
+    public function getServiceStatus(RealmStatusHost $host): ServiceStateDTO
     {
         return (new ResponseStateDTODecorator())
             ->decorate(
                 $this->client->get(
-                    'http://serverstatus.albiononline.com/',
+                    $host->toString(),
                     [
                         'http_errors' => false,
                     ]
@@ -44,20 +46,11 @@ class Client
     }
 
     /**
-     * Get secondary service status state
-     * @return string
+     * @description Fetches current client version
+     *
+     * @return Version|null
+     * @throws \Exception
      */
-    public function getMaintenanceStatus(): ?string
-    {
-        $response = $this->client->get('http://live.albiononline.com/status.txt', ['http_errors' => false]);
-
-        if($response->getStatusCode() === Httpstatuscodes::HTTP_OK) {
-            return $response->getBody()->getContents();
-        }
-
-        return null;
-    }
-
     public function getClientVersion(): ?Version
     {
         $response = $this->client->get(
