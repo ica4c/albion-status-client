@@ -11,9 +11,12 @@ class VersionTest extends TestCase
     /** @var \Albion\Status\Client */
     protected $client;
 
-    public function __construct()
+    /**
+     * @return void
+     */
+    public function setUp(): void
     {
-        parent::__construct('Version test case');
+        parent::setUp();
         $this->client = new Client();
     }
 

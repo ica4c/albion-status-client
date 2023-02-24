@@ -3,6 +3,7 @@
 namespace Tests;
 
 use Albion\Status\Client;
+use Albion\Status\Enums\RealmStatusHost;
 use Albion\Status\Models\State;
 use PHPUnit\Framework\TestCase;
 
@@ -12,18 +13,23 @@ class StatusTest extends TestCase
     protected $client;
 
     /**
-     * TestStatus constructor.
+     * @return void
      */
-    public function __construct()
+    public function setUp(): void
     {
-        parent::__construct('Client test case');
+        parent::setUp();
         $this->client = new Client();
     }
 
-
-    public function testStatusReport(): void
+    /**
+     * @param string $realm
+     * @return void
+     * @throws \Solid\Foundation\Exceptions\InvalidEnumValueException
+     * @dataProvider realmDataProvider
+     */
+    public function testStatusReport(string $realm): void
     {
-        $report = $this->client->getServiceStatus();
+        $report = $this->client->getServiceStatus(RealmStatusHost::of($realm));
 
         static::assertTrue(
             $report->getState()->is(State::ONLINE) ||
@@ -32,9 +38,14 @@ class StatusTest extends TestCase
         );
     }
 
-    public function testMaintenanceReport(): void
+    /**
+     * @return array
+     */
+    public function realmDataProvider(): array
     {
-        $report = $this->client->getMaintenanceStatus();
-        static::assertTrue(!$report || is_string($report));
+        return [
+            RealmStatusHost::WEST,
+            RealmStatusHost::EAST
+        ];
     }
 }

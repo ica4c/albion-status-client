@@ -27,9 +27,7 @@ switch ($status->getState()->toString()) {
     case State::FAILED:    
     case State::OFFLINE:
     case State::UNRESPONSIVE:
-        // Lets output the maintenance message 
-        $maintenance = $client->getMaintenanceStatus();
-        echo $maintenance->getMessage(); 
+        // Do something while service offline; 
         break;
 }
 ```
