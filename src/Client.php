@@ -29,7 +29,9 @@ class Client
 
     /**
      * @description Get primary service status state
+     *
      * @param RealmStatusHost $host
+     *
      * @return \Albion\Status\DTOs\ServiceStateDTO
      */
     public function getServiceStatus(RealmStatusHost $host): ServiceStateDTO
@@ -49,6 +51,7 @@ class Client
      * @description Fetches current client version
      *
      * @return Version|null
+     *
      * @throws \Exception
      */
     public function getClientVersion(): ?Version
