@@ -13,8 +13,8 @@ class ResponseStateDTODecorator
     protected function isDTTime(): bool
     {
         $dtStartTime = (new DateTime('now'))->setTime(10, 00, 00, 00);
-        $dtEndTime   = (new DateTime('now'))->setTime(11, 00, 00, 00);
-        $now         = new DateTime();
+        $dtEndTime = (new DateTime('now'))->setTime(11, 00, 00, 00);
+        $now = new DateTime();
 
         return $dtStartTime < $now && $now < $dtEndTime;
     }
