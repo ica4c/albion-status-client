@@ -6,6 +6,7 @@ use Solid\Foundation\Enum;
 
 class RealmStatusHost extends Enum
 {
-    public const WEST = 'https://serverstatus.albiononline.com';
-    public const EAST = 'https://serverstatus-sgp.albiononline.com';
+    public const AMERICA = 'https://serverstatus.albiononline.com';
+    public const ASIA = 'https://serverstatus-sgp.albiononline.com';
+    public const EUROPE = 'https://serverstatus-ams.albiononline.com';
 }
