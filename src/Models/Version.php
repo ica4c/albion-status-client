@@ -1,24 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Albion\Status\Models;
 
 class Version
 {
-    protected $windows;
-    protected $linux;
-    protected $osx;
-    protected $android;
-    protected $ios;
+    public function __construct(
+        protected ?string $windows = null,
+        protected ?string $linux = null,
+        protected ?string $osx = null,
+        protected ?string $android = null,
+        protected ?string $ios = null
+    ) {
+    }
 
     public function getWindows(): ?string
     {
         return $this->windows;
-    }
-
-    public function setWindows(?string $windows): self
-    {
-        $this->windows = $windows;
-        return $this;
     }
 
     public function getLinux(): ?string
@@ -26,21 +25,9 @@ class Version
         return $this->linux;
     }
 
-    public function setLinux(?string $linux): self
-    {
-        $this->linux = $linux;
-        return $this;
-    }
-
     public function getOSX(): ?string
     {
         return $this->osx;
-    }
-
-    public function setOSX(?string $osx): self
-    {
-        $this->osx = $osx;
-        return $this;
     }
 
     public function getAndroid(): ?string
@@ -48,24 +35,13 @@ class Version
         return $this->android;
     }
 
-    public function setAndroid(?string $android): self
-    {
-        $this->android = $android;
-        return $this;
-    }
-
     public function getIOS(): ?string
     {
         return $this->ios;
     }
 
-    public function setIOS(?string $ios): self
+    public function isSame(Version $version): bool
     {
-        $this->ios = $ios;
-        return $this;
-    }
-
-    public function isSame(Version $version): bool {
         return $this->getOSX() === $version->getOSX() &&
             $this->getLinux() === $version->getLinux() &&
             $this->getWindows() === $version->getWindows() &&

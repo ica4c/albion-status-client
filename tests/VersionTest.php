@@ -1,15 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests;
 
 use Albion\Status\Client;
-use Albion\Status\Models\State;
-use PHPUnit\Framework\TestCase;
 
-class VersionTest extends TestCase
+class VersionTest extends MockedClientTestCase
 {
-    /** @var \Albion\Status\Client */
-    protected $client;
+    protected Client $client;
 
     /**
      * @return void
@@ -17,10 +16,16 @@ class VersionTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->client = new Client();
+
+        $this->client = new Client(
+            $this->mockClient([
+                $this->makeSampleByResource(200, 'plain/text', 'manifest_response.txt')
+            ])
+        );
     }
 
-    public function testVersion() {
+    public function testVersion()
+    {
         $report = $this->client->getClientVersion();
 
         $this->assertNotNull($report->getAndroid());

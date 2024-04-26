@@ -1,0 +1,42 @@
+<patchsitemanifest perfileupdate="True" branch="live">
+<albiononline>
+<win32 GuestAccountsEnabled="true">
+<fullinstall file="albiononline-win32-full-1.25.004.276629.zip" filesize="2798484213" version="1.25.004.276629"/>
+<update file="albiononline-win32-patch-1.25.000.275987-to-1.25.004.276629.zip" fromversion="1.25.000.275987" toversion="1.25.004.276629"/>
+<update file="albiononline-win32-patch-1.25.000.276171-to-1.25.004.276629.zip" fromversion="1.25.000.276171" toversion="1.25.004.276629"/>
+<update file="albiononline-win32-patch-1.25.000.276212-to-1.25.004.276629.zip" fromversion="1.25.000.276212" toversion="1.25.004.276629"/>
+</win32>
+<macosx GuestAccountsEnabled="true">
+<fullinstall file="albiononline-macosx-full-1.25.004.276629.zip" filesize="2757963058" version="1.25.004.276629"/>
+<update file="albiononline-macosx-patch-1.25.000.275988-to-1.25.004.276629.zip" fromversion="1.25.000.275988" toversion="1.25.004.276629"/>
+<update file="albiononline-macosx-patch-1.25.000.276171-to-1.25.004.276629.zip" fromversion="1.25.000.276171" toversion="1.25.004.276629"/>
+<update file="albiononline-macosx-patch-1.25.000.276212-to-1.25.004.276629.zip" fromversion="1.25.000.276212" toversion="1.25.004.276629"/>
+</macosx>
+<linux GuestAccountsEnabled="true">
+<fullinstall file="albiononline-linux-full-1.25.004.276629.zip" filesize="2780986860" version="1.25.004.276629"/>
+<update file="albiononline-linux-patch-1.25.000.275987-to-1.25.004.276629.zip" fromversion="1.25.000.275987" toversion="1.25.004.276629"/>
+<update file="albiononline-linux-patch-1.25.000.276171-to-1.25.004.276629.zip" fromversion="1.25.000.276171" toversion="1.25.004.276629"/>
+<update file="albiononline-linux-patch-1.25.000.276212-to-1.25.004.276629.zip" fromversion="1.25.000.276212" toversion="1.25.004.276629"/>
+</linux>
+<android MessagingEnabled="true" MessagingSubscribe="true" MessagingRegisterOnInit="false" GuestAccountsEnabled="true" BackgroundDownloaderEnabled="true" BacktraceEnabled="true" BacktraceBreadcrumbs="false" BacktraceScreenshots="false" SocialPlatforms="true">
+<fullinstall file="albiononline-android-full-1.25.000.276304.zip" filesize="2456779140" version="1.25.000.276304"/>
+</android>
+<androidplaystore MessagingEnabled="true" MessagingSubscribe="true" MessagingRegisterOnInit="false" GuestAccountsEnabled="true" BackgroundDownloaderEnabled="true" SocialPlatforms="true">
+<fullinstall file="albiononline-androidplaystore-full-1.25.000.276304.zip" filesize="2238072760" version="1.25.000.276304"/>
+</androidplaystore>
+<ios iOSAppTrackingTransparencyPromptEnabled="true" MessagingEnabled="true" MessagingSubscribe="true" MessagingRegisterOnInit="false" GuestAccountsEnabled="true" SocialPlatforms="true">
+<fullinstall file="albiononline-ios-full-1.25.000.276171.ipa" filesize="2238179853" version="1.25.000.276171"/>
+</ios>
+</albiononline>
+<installer>
+<win32>
+<fullinstall file="launcher-win32-setup-1.0.34.485.exe" filesize="79211328" version="1.0.034.485" forceexplicitversion="False"/>
+</win32>
+<macosx>
+<fullinstall file="launcher-macosx-setup-1.0.34.485.pkg" filesize="162243423" version="1.0.034.485" forceexplicitversion="False"/>
+</macosx>
+<linux>
+<fullinstall file="launcher-linux-setup-1.0.34.485" filesize="106742227" version="1.0.034.485" forceexplicitversion="False"/>
+</linux>
+</installer>
+</patchsitemanifest>

@@ -1,12 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Albion\Status\Enums;
 
-use Solid\Foundation\Enum;
-
-class RealmStatusHost extends Enum
+enum RealmStatusHost: string
 {
-    public const AMERICA = 'https://serverstatus.albiononline.com';
-    public const ASIA = 'https://serverstatus-sgp.albiononline.com';
-    public const EUROPE = 'https://serverstatus-ams.albiononline.com';
+    case AMERICA = 'https://serverstatus.albiononline.com';
+    case ASIA = 'https://serverstatus-sgp.albiononline.com';
+    case EUROPE = 'https://serverstatus-ams.albiononline.com';
 }

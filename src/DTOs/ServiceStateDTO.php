@@ -1,40 +1,25 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Albion\Status\DTOs;
 
-use Albion\Status\Models\State;
+use Albion\Status\Enums\ServerState;
 
 final class ServiceStateDTO
 {
-    /** @var \Albion\Status\Models\State */
-    protected $state;
-    /** @var array string */
-    protected $message;
-
-    /**
-     * ServiceStateDTO constructor.
-     *
-     * @param \Albion\Status\Models\State $state
-     * @param string|null                 $message
-     */
-    public function __construct(State $state, ?string $message = null)
-    {
-        $this->state = $state;
-        $this->message = $message;
+    public function __construct(
+        protected ServerState $state,
+        protected ?string $message = null
+    ) {
     }
 
-    /**
-     * @return \Albion\Status\Models\State
-     */
-    public function getState(): State
+    public function getState(): ServerState
     {
         return $this->state;
     }
 
-    /**
-     * @return array
-     */
-    public function getMessage()
+    public function getMessage(): string
     {
         return $this->message;
     }

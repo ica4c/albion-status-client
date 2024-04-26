@@ -1,38 +1,45 @@
 {
-    "name": "ica4c/albion-status-client",
-    "description": "Simple albion service status client",
-    "type": "library",
-    "license": "MIT",
-    "keywords": [
-        "albion online", "api", "games", "mmo"
-    ],
-    "authors": [
-        {
-            "name": "Ruslan Gataullin",
-            "email": "ruslan@solid.studio"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "Albion\\Status\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Tests\\": "tests/"
-        }
-    },
-    "require": {
-        "solid/foundation": "^0.4",
-        "ext-json": "*",
-        "guzzlehttp/guzzle": "^7.8",
-        "lukasoppermann/http-status": "^3.1"
-    },
-    "require-dev": {
-        "roave/security-advisories": "dev-master",
-        "phpunit/phpunit": "^9"
-    },
-    "scripts": {
-        "test": "php vendor/bin/phpunit --bootstrap vendor/autoload.php --configuration phpunit.xml tests"
+  "name": "ica4c/albion-status-client",
+  "description": "Simple albion service status client",
+  "type": "library",
+  "license": "MIT",
+  "keywords": [
+    "albion online",
+    "api",
+    "games",
+    "mmo"
+  ],
+  "authors": [
+    {
+      "name": "Ruslan Gataullin",
+      "email": "ruslan@solid.studio"
     }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Albion\\Status\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "require": {
+    "php": ">=8.1",
+    "ext-json": "*",
+    "guzzlehttp/guzzle": "^7.8",
+    "lukasoppermann/http-status": "^3.1"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-master",
+    "phpunit/phpunit": "^9",
+    "phpstan/phpstan": "^1.10",
+    "friendsofphp/php-cs-fixer": "^3.54"
+  },
+  "scripts": {
+    "test": "php vendor/bin/phpunit --bootstrap vendor/autoload.php --configuration phpunit.xml tests",
+    "phpstan": "vendor/bin/phpstan analyse src tests",
+    "code_style": "vendor/bin/php-cs-fixer fix --verbose --rules=@PSR12 --dry-run src"
+  }
 }
