@@ -11,33 +11,28 @@ Simple http client to get service status and maintenance reports
 #### How to resolve server status
 
 ```php
-use Albion\Status\Client;
-use Albion\Status\Models\State;
-
+use Albion\Status\Client;use Albion\Status\Enums\ServerState;
 $client = new Client();
 
 $status = $client->getServiceStatus();
 
-switch ($status->getState()->toString()) {
-    case State::ONLINE:
-    case State::STARTING:
+switch ($status->getState()) {
+    case ServerState::ONLINE:
+    case ServerState::STARTING:
         // Do something while service online/starting;
         break;
     
-    case State::FAILED:    
-    case State::OFFLINE:
-    case State::UNRESPONSIVE:
+    case ServerState::FAILED:    
+    case ServerState::OFFLINE:
+    case ServerState::UNRESPONSIVE:
         // Do something while service offline; 
         break;
 }
 ```
 
-#### How to resolve active client version
+#### How to resolve client version
 
 ```php
-use Albion\Status\Client;
-use Albion\Status\Models\Version;
-
 $client = new Client();
 
 $version = $client->getClientVersion();

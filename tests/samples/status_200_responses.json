@@ -1,0 +1,14 @@
+[
+  {
+    "status": "online",
+    "message": "Server is online."
+  },
+  {
+    "status": "offline",
+    "message": "Server is online."
+  },
+  {
+    "status": "starting",
+    "message": "Server is online."
+  }
+]

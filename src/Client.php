@@ -1,30 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Albion\Status;
 
 use Albion\Status\Decorators\ResponseStateDTODecorator;
 use Albion\Status\DTOs\ServiceStateDTO;
 use Albion\Status\Enums\RealmStatusHost;
 use Albion\Status\Models\Version;
-use GuzzleHttp\Client as HttpClient;
 use Lukasoppermann\Httpstatus\Httpstatuscodes;
+use Psr\Http\Client\ClientInterface;
 use SimpleXMLElement;
 
 class Client
 {
-    /** @var HttpClient */
-    protected $client;
-
-    /**
-     * AlbionServiceStatusService constructor.
-     */
-    public function __construct()
+    public function __construct(protected ClientInterface $client)
     {
-        $this->client = new HttpClient(
-            [
-                'timeout' => 40,
-            ]
-        );
     }
 
     /**
@@ -33,13 +24,16 @@ class Client
      * @param RealmStatusHost $host
      *
      * @return \Albion\Status\DTOs\ServiceStateDTO
+     *
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \JsonException
      */
     public function getServiceStatus(RealmStatusHost $host): ServiceStateDTO
     {
         return (new ResponseStateDTODecorator())
             ->decorate(
                 $this->client->get(
-                    $host->toString(),
+                    $host->value,
                     [
                         'http_errors' => false,
                     ]
@@ -52,7 +46,7 @@ class Client
      *
      * @return Version|null
      *
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getClientVersion(): ?Version
     {
@@ -66,33 +60,19 @@ class Client
             $platforms = $xml->xpath("//albiononline/*");
 
             if($platforms) {
-                $version = new Version;
+                $versions = [];
 
                 foreach ($platforms as $platform) {
-                    switch ($platform->getName()) {
-                        case 'win32':
-                            $version->setWindows((string) $platform->fullinstall->attributes()->version);
-                            break;
-
-                        case 'macosx':
-                            $version->setOSX((string) $platform->fullinstall->attributes()->version);
-                            break;
-
-                        case 'linux':
-                            $version->setLinux((string) $platform->fullinstall->attributes()->version);
-                            break;
-
-                        case 'androidplaystore':
-                            $version->setAndroid((string) $platform->fullinstall->attributes()->version);
-                            break;
-
-                        case 'ios':
-                            $version->setIOS((string) $platform->fullinstall->attributes()->version);
-                            break;
-                    }
+                    $versions[$platform->getName()] = (string) $platform->fullinstall->attributes()->version;
                 }
 
-                return $version;
+                return new Version(
+                    $versions['win32'] ?? null,
+                    $versions['linux'] ?? null,
+                    $versions['macosx'] ?? null,
+                    $versions['androidplaystore'] ?? null,
+                    $versions['ios'] ?? null,
+                );
             }
         }
 

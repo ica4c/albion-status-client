@@ -1,40 +1,58 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests;
 
 use Albion\Status\Client;
 use Albion\Status\Enums\RealmStatusHost;
-use Albion\Status\Models\State;
-use PHPUnit\Framework\TestCase;
+use Albion\Status\Enums\ServerState;
 
-class StatusTest extends TestCase
+class StatusTest extends MockedClientTestCase
 {
-    /** @var \Albion\Status\Client */
-    protected $client;
+    protected Client $client;
 
     /**
      * @return void
+     *
+     * @throws \JsonException
      */
     public function setUp(): void
     {
         parent::setUp();
-        $this->client = new Client();
+
+        $this->client = new Client(
+            $this->mockClient(
+                $this->loadResponseSamplesFromSamplesJson('status_200_responses.json')
+            )
+        );
     }
 
     /**
-     * @param string $realm
-     * @return void
-     * @throws \Solid\Foundation\Exceptions\InvalidEnumValueException
      * @dataProvider realmDataProvider
+     *
+     * @param \Albion\Status\Enums\RealmStatusHost $realm
+     *
+     * @return void
+     *
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \JsonException
      */
-    public function testStatusReport(string $realm): void
+    public function testStatusReport(RealmStatusHost $realm): void
     {
-        $report = $this->client->getServiceStatus(RealmStatusHost::of($realm));
+        static::assertSame(
+            $this->client->getServiceStatus($realm)->getState(),
+            ServerState::ONLINE
+        );
 
-        static::assertTrue(
-            $report->getState()->is(State::ONLINE) ||
-            $report->getState()->is(State::OFFLINE) ||
-            $report->getState()->is(State::STARTING)
+        static::assertSame(
+            $this->client->getServiceStatus($realm)->getState(),
+            ServerState::OFFLINE
+        );
+
+        static::assertSame(
+            $this->client->getServiceStatus($realm)->getState(),
+            ServerState::STARTING
         );
     }
 
